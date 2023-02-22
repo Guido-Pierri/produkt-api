@@ -14,16 +14,19 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository) {this.productRepository = productRepository;}
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
-    public List<Product> getAllProducts() {return productRepository.findAll();}
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 
     public List<String> getAllCategories() {
         return productRepository.findAllCategories();
     }
 
-    public List<Product> getProductsByCategory(String category)
-    {
+    public List<Product> getProductsByCategory(String category) {
         return productRepository.findByCategory(category);
     }
 

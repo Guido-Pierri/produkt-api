@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping("/products/categories/{category}")
     ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category) {
-        List productsByCategory = productService.getProductsByCategory(category);
+        List productsByCategory =  productService.getProductsByCategory(category);
         return new ResponseEntity<List<Product>>(productsByCategory, HttpStatus.OK);
     }
 
