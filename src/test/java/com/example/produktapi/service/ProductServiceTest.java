@@ -102,9 +102,7 @@ void givenAnExistingCategory_whenGetProductsByCategory_thenReceivesNonEmptyList(
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
                 //when
                 ()->underTest.getProductById(product.getId()));
-        //then
-       // verify(repository, times(1)).get(titel);
-        //verify(repository,times(0)).save(any());
+
         assertEquals("Produkt med id "+ product.getId()+ " hittades inte",exception.getMessage());
     }
     @Test
