@@ -21,8 +21,9 @@ public class ProductService {
     public List<String> getAllCategories() {
         return productRepository.findAllCategories();
     }
-
     public List<Product> getProductsByCategory(String category)
+    //should it throw an exception if the category does not exist?
+
     {
         return productRepository.findByCategory(category);
     }

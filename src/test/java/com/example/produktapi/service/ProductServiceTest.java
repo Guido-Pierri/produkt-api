@@ -36,6 +36,7 @@ ArgumentCaptor<Product> productCaptor;
 ArgumentCaptor<Integer> idCaptor;
 
     @Test
+    @DisplayName("getAllProducts()")
     void GetAllProducts_thenExactlyOneInteractionWithRepositoryMethodFindAll() {
         //when
         underTest.getAllProducts();
@@ -45,7 +46,8 @@ ArgumentCaptor<Integer> idCaptor;
     }
 
     @Test
-    void GetAllCategories_thenExactlyOneInteractionWithRepositoryMethodFindAllCategories() {
+    @DisplayName("getAllCategories()")
+    void whenGetAllCategories_thenExactlyOneInteractionWithRepositoryMethodFindAllCategories() {
         //when
         underTest.getAllCategories();
 
@@ -55,28 +57,19 @@ ArgumentCaptor<Integer> idCaptor;
     }
 
     @Test
-    void getProductsByCategory() {
+    @DisplayName("getProductsByCategory()")
+    void whenGetProductsByCategory_thenExactlyOneInteractionWithRepositoryMethodFindByCategory() {
         //given
-
-        //when
         String category = "electronics";
         String titel = "vår test titel";
         Product product = new Product(titel,4000.00,category,"","");
+        //when
         underTest.getProductsByCategory(product.getCategory());
-        //System.out.println("underTest.getProductsByCategory(category): " + underTest.getProductsByCategory(category));
         //then
         verify(repository,times(1)).findByCategory(category);
         verifyNoMoreInteractions(repository);
     }
-    /*
-@Test
-@DisplayName("testar getProductsByCategory()")
-void givenAnExistingCategory_whenGetProductsByCategory_thenReceivesNonEmptyList(){
-        //when
-    List<Product> productsByCategory= underTest.getProductsByCategory("Electronics");
-    //then
 
-}*/
     @Test
     @DisplayName("testar getProductById/ normalflöde")
     void whenTryingToGetProductById_thenReturnProduct() {
@@ -102,7 +95,7 @@ void givenAnExistingCategory_whenGetProductsByCategory_thenReceivesNonEmptyList(
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
                 //when
                 ()->underTest.getProductById(product.getId()));
-
+                //then
         assertEquals("Produkt med id "+ product.getId()+ " hittades inte",exception.getMessage());
     }
     @Test
@@ -143,21 +136,13 @@ void whenAddingproductWithDuplicateTitle_thenThrowError(){
         //given
         String titel = "Objekt som ska updateras";
         Product product = new Product(titel,4000.00,"","","");
-        //int id = 1;
-        //product.setId(id);
-
         given(repository.findById(product.getId())).willReturn(Optional.of(product));
-        System.out.println("product efter given metod:" + product);
 
         //when
-        System.out.println("undertest testas: " + product.getId());
         underTest.updateProduct(product, product.getId());
         //then
-        System.out.println("verify körs");
         verify(repository,times(1)).save(productCaptor.capture());
-        System.out.println("repository.findById(product.getId): " + repository.findById(product.getId()));
 
-        System.out.println("productCaptor.getValue(): " + productCaptor.getValue());
         assertEquals(product, productCaptor.getValue());
 
     }
