@@ -17,10 +17,10 @@ import java.util.Optional;
 class ProductRepositoryTest {
     @Autowired
     private ProductRepository underTest;
-@AfterEach
-void tearDown(){
-    underTest.deleteAll();
-}
+    @AfterEach
+    void tearDown(){
+        underTest.deleteAll();
+    }
     @Test
     void testingOurRepository(){
     List<Product> products = underTest.findAll();
@@ -29,10 +29,8 @@ void tearDown(){
     @Test
     void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategory() {
         //given
-        System.out.println("underTest.findAllCategories(): " + underTest.findAllCategories().get(0));
-        underTest.findAllCategories().get(0);
         String title = "En dator";
-        String category = underTest.findAllCategories().get(0); // assigns category of index 0 from findAllCategories()
+        String category = underTest.findAllCategories().get(0); // assigns category of index 0 from findAllCategories() to the variable category
         Product product = new Product(title,
                 23000.0,
                 category,
@@ -42,7 +40,6 @@ void tearDown(){
 
         //when
         List<Product> listProduct = underTest.findByCategory(category);
-        System.out.println(listProduct);
         //then
         //1 sätt att skriva 3 tester
         Assertions.assertTrue(listProduct.contains(product));

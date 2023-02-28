@@ -85,8 +85,7 @@ void givenAnExistingCategory_whenGetProductsByCategory_thenReceivesNonEmptyList(
         Product product = new Product(titel,4000.00,"","","");
         given(repository.findById(product.getId())).willReturn(Optional.of(product));
         //when
-        Product product2 =
-        underTest.getProductById(any());
+        Product product2 = underTest.getProductById(any());
 
         //then
         assertEquals(product, product2);
