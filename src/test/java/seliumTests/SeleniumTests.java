@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,7 +47,13 @@ public class SeleniumTests {
 
     @BeforeEach
 void init(){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     driver.get("https://onlineoasisfrontend.netlify.app/");
+
 }
 @AfterEach
 void quit(){
@@ -215,229 +222,9 @@ void checkIfMensClothesCategoryIsCorrect(){
         driver.quit();
     }
     @Test
-    @DisplayName("Kontrollerar att produkt 1 har rätt namn")
-    void checkIfProductOneHasTheCorrectName(){
-    WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-    WebElement productNameElement = driver.findElement(By.id("title1"));
-    String productNameText = productNameElement.getText();
-    String productNameTextExpected = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
-    Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 2 har rätt namn")
-    void checkIfProductTwoHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title2"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Mens Casual Premium Slim Fit T-Shirts";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 3 har rätt namn")
-    void checkIfProductThreeHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title3"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Mens Cotton Jacket";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }@Test
-    @DisplayName("Kontrollerar att produkt 4 har rätt namn")
-    void checkIfProductFourHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title4"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Mens Casual Slim Fit";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 5 har rätt namn")
-    void checkIfProductFiveHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title5"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 6 har rätt namn")
-    void checkIfProductSixHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title6"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "SolGold Petite Micropave";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 7 har rätt namn")
-    void checkIfProductSevenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title7"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "White Gold Plated Princess";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 8 har rätt namn")
-    void checkIfProductEightHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title8"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Pierced Owl Rose Gold Plated Stainless Steel Double";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 9 har rätt namn")
-    void checkIfProductNineHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title9"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "WD 2TB Elements Portable External Hard Drive - USB 3.0";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 10 har rätt namn")
-    void checkIfProductTenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title10"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 11 har rätt namn")
-    void checkIfProductElevenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title11"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 12 har rätt namn")
-    void checkIfProductTwelveHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title12"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 13 har rätt namn")
-    void checkIfProductThirteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title13"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 14 har rätt namn")
-    void checkIfProductFourteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title14"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 15 har rätt namn")
-    void checkIfProductFifteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title15"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 16 har rätt namn")
-    void checkIfProductSixteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title16"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 16 har rätt namn")
-    void checkIfProductSeventeenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title17"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Rain Jacket Women Windbreaker Striped Climbing Raincoats";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 18 har rätt namn")
-    void checkIfProductEighteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title18"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "MBJ Women's SolShort Sleeve Boat Neck V";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 19 har rätt namn")
-    void checkIfProductNineteenHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title19"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "Opna Women's Short Sleeve Moisture";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
-    @DisplayName("Kontrollerar att produkt 20 har rätt namn")
-    void checkIfProductTwentyHasTheCorrectName(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
-        WebElement productNameElement = driver.findElement(By.id("title20"));
-        String productNameText = productNameElement.getText();
-        String productNameTextExpected = "DANVOUY Womens T Shirt Casual Cotton Short";
-        Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
-        driver.quit();
-    }
-    @Test
     @DisplayName("Kontrollerar att alla 20 produkter har rätt namn")
     void checkAllNames(){
-String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
         "Mens Casual Premium Slim Fit T-Shirts",
         "Mens Cotton Jacket",
         "Mens Casual Slim Fit",
@@ -452,6 +239,7 @@ String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
         "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
         "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
         "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+        "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
         "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
         "MBJ Women's SolShort Sleeve Boat Neck V",
         "Opna Women's Short Sleeve Moisture",
