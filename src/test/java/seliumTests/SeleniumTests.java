@@ -1,10 +1,7 @@
 package seliumTests;
 
 import jdk.jfr.Description;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,121 +42,95 @@ respektive kategori
 */
 public class SeleniumTests {
     //G-nivå tester
+    WebDriver driver = new ChromeDriver();
 
+    @BeforeEach
+void init(){
+    driver.get("https://onlineoasisfrontend.netlify.app/");
+}
+@AfterEach
+void quit(){
+    driver.quit();
+}
     @Test
     @DisplayName("Kontrollerar att webbplatsens titel stämmer")
     public void checkTitle(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
+
         Assertions.assertEquals("Online Oasis",driver.getTitle(),"Titeln stämmer inte med förväntat");
         Assertions.assertNotEquals("Website",driver.getTitle(),"Titeln stämmer inte överens med förväntat");
-        driver.quit();
     }
     @Test
     @DisplayName("Kolla att det totala antalet produkter stämmer")
     void numberOfProductsShouldBeTwenty(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         List<WebElement> products = driver.findElements(By.className("productItem"));
         Assertions.assertEquals(20, products.size(), "Antalet produkter stämmer inte");
         Assertions.assertNotEquals(21,products.size(), "Antalet produkter stämmer inte");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 1")
     void checkThatPriceOfProducOnetIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
+
         WebElement productPrice = driver.findElement(By.xpath("//*[@id=\"products\"]/div[1]/div/div/div/div/p/b"));
         String productPriceText = productPrice.getText();
         Assertions.assertEquals("$"+109.95,productPriceText,"Priset verkar inte stämma överens");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 2")
     void checkThatPriceOfProductTwoIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement productPrice = driver.findElement(By.xpath("//*[@id=\"products\"]/div[2]/div/div/div/div/p/b"));
         String productPriceText = productPrice.getText();
         Assertions.assertEquals("$"+22.3,productPriceText,"Priset verkar inte stämma överens");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 3")
     void checkThatPriceOfProducThreetIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement productPrice = driver.findElement(By.xpath("//*[@id=\"products\"]/div[3]/div/div/div/div/p/b"));
         String productPriceText = productPrice.getText();
         Assertions.assertEquals("$"+55.99,productPriceText,"Priset verkar inte stämma överens");
-        driver.quit();
     }
 
 //VG nivå tester
 @Test
 @DisplayName("Kolla att men's clothes har rätt namn")
 void checkIfMensClothesCategoryIsCorrect(){
-    WebDriver driver = new ChromeDriver();
-    driver.get("https://onlineoasisfrontend.netlify.app/");
     WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"men\"]"));
     String text = categoryButton.getText();
-
     Assertions.assertEquals("men's clothes",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
-    driver.quit();
 }
     @Test
     @DisplayName("Kollar att women's clothes har rätt namn")
     void checkIfWomensClothesCategoryIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"women\"]"));
         String text = categoryButton.getText();
-
         Assertions.assertEquals("women's clothes",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
-        driver.quit();
     }
     @Test
     @DisplayName("Kollar att jewelery har rätt namn")
     void checkIfJeweleryCategoryIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"jewelery\"]"));
         String text = categoryButton.getText();
-
         Assertions.assertEquals("jewelery",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
-        driver.quit();
     }
     @Test
     @DisplayName("Kollar att electronics har rätt namn")
     void checkIfElectronicsCategoryIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"electronics\"]"));
         String text = categoryButton.getText();
-
         Assertions.assertEquals("electronics",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 4")
     void checkThatPriceOfProductFourtIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement productPrice = driver.findElement(By.xpath("//*[@id=\"products\"]/div[4]/div/div/div/div/p/b"));
         String productPriceText = productPrice.getText();
         Assertions.assertEquals("$" + 15.99, productPriceText,"Priset verkar inte stämma överens");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 5")
     void checkThatPriceOfProductFivetIsCorrect(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://onlineoasisfrontend.netlify.app/");
         WebElement productPrice = driver.findElement(By.xpath("//*[@id=\"products\"]/div[5]/div/div/div/div/p/b"));
         String productPriceText = productPrice.getText();
         Assertions.assertEquals("$" + 695, productPriceText,"Priset verkar inte stämma överens");
-        driver.quit();
     }
     @Test
     @DisplayName("Kontrollera att priset blir rätt på produkt 6")
@@ -171,16 +142,6 @@ void checkIfMensClothesCategoryIsCorrect(){
         Assertions.assertEquals("$" + 168, productPriceText,"Priset verkar inte stämma överens");
         driver.quit();
     }
-    @Test
-    @Disabled
-    void checkH1Text(){
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://java22.netlify.app/");
-        String h1Text = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/div/h1")).getText();
-        Assertions.assertEquals("Testdriven utveckling - projekt",h1Text,"Rubriken verkar inte stämma");
-        driver.quit();
-    }
-
     @Test
     @DisplayName("Kontrollera att bilderna skrivs ut/visas för produkt 1")
     void imageOfProductOneShouldBeVisible(){
@@ -472,5 +433,34 @@ void checkIfMensClothesCategoryIsCorrect(){
         String productNameTextExpected = "DANVOUY Womens T Shirt Casual Cotton Short";
         Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
         driver.quit();
+    }
+    @Test
+    @DisplayName("Kontrollerar att alla 20 produkter har rätt namn")
+    void checkAllNames(){
+String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+        "Mens Casual Premium Slim Fit T-Shirts",
+        "Mens Cotton Jacket",
+        "Mens Casual Slim Fit",
+        "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+        "SolGold Petite Micropave",
+        "White Gold Plated Princess",
+        "Pierced Owl Rose Gold Plated Stainless Steel Double",
+        "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+        "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+        "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+        "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
+        "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
+        "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
+        "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+        "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+        "MBJ Women's SolShort Sleeve Boat Neck V",
+        "Opna Women's Short Sleeve Moisture",
+        "DANVOUY Womens T Shirt Casual Cotton Short"};
+        for (int i = 0; i < names.length; i++) {
+            WebElement productNameElement = driver.findElement(By.id("title" +(i+1)));
+            String productNameText = productNameElement.getText();
+            String productNameTextExpected = names[i];
+            Assertions.assertEquals(productNameTextExpected,productNameText, "Namnet verkar inte stämma överens");
+        }
     }
 }
