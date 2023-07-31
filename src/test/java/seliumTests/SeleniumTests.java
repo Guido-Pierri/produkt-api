@@ -1,18 +1,16 @@
 package seliumTests;
 
-import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
 import java.util.List;
+
 /*
 * Krav
 För godkänt betyg (G)
@@ -46,19 +44,16 @@ public class SeleniumTests {
     WebDriver driver = new ChromeDriver();
 
     @BeforeEach
-void init(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-    driver.get("https://onlineoasisfrontend.netlify.app/");
+    void init(){
 
-}
-@AfterEach
-void quit(){
-    driver.quit();
-}
+        driver.get("https://onlineoasisfrontend.netlify.app/");
+
+    }
+
+    @AfterEach
+    void quit(){
+        driver.quit();
+    }
     @Test
     @DisplayName("Kontrollerar att webbplatsens titel stämmer")
     public void checkTitle(){
@@ -96,14 +91,14 @@ void quit(){
         Assertions.assertEquals("$"+55.99,productPriceText,"Priset verkar inte stämma överens");
     }
 
-//VG nivå tester
-@Test
-@DisplayName("Kolla att men's clothes har rätt namn")
-void checkIfMensClothesCategoryIsCorrect(){
-    WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"men\"]"));
-    String text = categoryButton.getText();
-    Assertions.assertEquals("men's clothes",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
-}
+    //VG nivå tester
+    @Test
+    @DisplayName("Kolla att men's clothes har rätt namn")
+    void checkIfMensClothesCategoryIsCorrect(){
+        WebElement categoryButton = driver.findElement(By.xpath("//*[@id=\"men\"]"));
+        String text = categoryButton.getText();
+        Assertions.assertEquals("men's clothes",text.toLowerCase(), "Texten verkar inte stämma överens med kategorin");
+    }
     @Test
     @DisplayName("Kollar att women's clothes har rätt namn")
     void checkIfWomensClothesCategoryIsCorrect(){
@@ -224,26 +219,26 @@ void checkIfMensClothesCategoryIsCorrect(){
     @Test
     @DisplayName("Kontrollerar att alla 20 produkter har rätt namn")
     void checkAllNames(){
-    String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        "Mens Casual Premium Slim Fit T-Shirts",
-        "Mens Cotton Jacket",
-        "Mens Casual Slim Fit",
-        "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-        "SolGold Petite Micropave",
-        "White Gold Plated Princess",
-        "Pierced Owl Rose Gold Plated Stainless Steel Double",
-        "WD 2TB Elements Portable External Hard Drive - USB 3.0",
-        "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-        "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-        "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-        "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-        "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
-        "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-        "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
-        "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-        "MBJ Women's SolShort Sleeve Boat Neck V",
-        "Opna Women's Short Sleeve Moisture",
-        "DANVOUY Womens T Shirt Casual Cotton Short"};
+        String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                "Mens Casual Premium Slim Fit T-Shirts",
+                "Mens Cotton Jacket",
+                "Mens Casual Slim Fit",
+                "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+                "SolGold Petite Micropave",
+                "White Gold Plated Princess",
+                "Pierced Owl Rose Gold Plated Stainless Steel Double",
+                "WD 2TB Elements Portable External Hard Drive - USB 3.0",
+                "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+                "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+                "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
+                "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
+                "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultraw Screen QLED",
+                "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+                "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+                "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+                "MBJ Women's SolShort Sleeve Boat Neck V",
+                "Opna Women's Short Sleeve Moisture",
+                "DANVOUY Womens T Shirt Casual Cotton Short"};
         for (int i = 0; i < names.length; i++) {
             WebElement productNameElement = driver.findElement(By.id("title" +(i+1)));
             String productNameText = productNameElement.getText();
